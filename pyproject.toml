@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "countdown"
+version = "0.1.0"
+description = ""
+authors = ["Jonathan Chow <jonathan@cychow.co.uk>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+fastapi = "^0.63.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
