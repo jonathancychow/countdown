@@ -17,7 +17,11 @@ class Clock():
         driver.fullscreen_window()
 
 if __name__ == '__main__':
-    clock = Clock('http://hurry-app.appspot.com/12:34/Final')
+    base_url = 'https://jonathancychow.github.io/countdown/'
+    param = '?time=35&alert=30'
+    # clock = Clock('http://hurry-app.appspot.com/12:34/Final')
+    clock = Clock(base_url + param)
+
     clock.start_clock()
 
 

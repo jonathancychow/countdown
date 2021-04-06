@@ -1,5 +1,7 @@
 # Countdown with API
 
+ - Clock 
+ - https://jonathancychow.github.io/countdown/?time=35&alert=30
 
 ## Python Library Installation 
 - Run the command prompt with admin privilege and install the Python package Poetry as follow: 
