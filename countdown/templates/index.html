@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block title %}Countdown{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Countdown</h1>
+    <p class="lead">Start counting down for stage</p>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Next Bus 1</h2>
+        <ul class="list-group mb-4">
+            {% for item in itemsOne %}
+            <li>{{item}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h2>Next Bus 2</h2>
+        <ul class="list-group mb-4">
+            {% for item in itemsTwo %}
+            <li>{{ item}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<form action="{{'/add_item'}}" method="post">
+    <input type="text" name="postcode">
+    <input type="submit">
+</form>
+
+{% endblock %}
