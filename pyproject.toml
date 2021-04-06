@@ -10,6 +10,7 @@ fastapi = "^0.63.0"
 uvicorn = "^0.13.4"
 Flask = "^1.1.2"
 selenium = "^3.141.0"
+python-dotenv = "^0.17.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
