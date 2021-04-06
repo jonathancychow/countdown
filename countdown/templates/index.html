@@ -7,7 +7,7 @@
     <p class="lead">Start counting down for stage</p>
 </div>
 
-<div class="row">
+<!-- <div class="row">
     <div class="col-md-12">
         <h2>Next Bus 1</h2>
         <ul class="list-group mb-4">
@@ -26,10 +26,11 @@
             {% endfor %}
         </ul>
     </div>
-</div>
+</div> -->
 
-<form action="{{'/add_item'}}" method="post">
-    <input type="text" name="postcode">
+<form action="{{'/start_countdown'}}" method="post">
+    <!-- <input type="text" name="postcode"> -->
+    <input type="time"  name="starttime" value="10:30" required>
     <input type="submit">
 </form>
 
