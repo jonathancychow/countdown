@@ -7,6 +7,7 @@
     <p class="lead">Start counting down for stage</p>
 </div>
 
+
 <!-- <div class="row">
     <div class="col-md-12">
         <h2>Next Bus 1</h2>
@@ -29,9 +30,26 @@
 </div> -->
 
 <form action="{{'/start_countdown'}}" method="post">
-    <!-- <input type="text" name="postcode"> -->
-    <input type="time"  name="starttime" value="10:30" required>
+    <input type="datetime-local"  id="starttimeid"  name="starttime" value="2017-06-01T08:30" required>
+
     <input type="submit">
+    <script>  
+      n =  new Date();
+      m = n.getMonth() + 1;
+      d = n.getDate();
+      y = n.getFullYear()
+      if (m <= 9)
+        m="0"+String(m)
+      else
+        m=String(m)
+      if (d <= 9)
+        d="0"+String(d)
+      else
+        d=String(d)
+    
+      timeNow = String(y+ '-'+ m + '-' + d + 'T10:30')    
+      document.getElementById("starttimeid").value = timeNow    
+      </script>
 </form>
 
 {% endblock %}
