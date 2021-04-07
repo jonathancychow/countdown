@@ -28,13 +28,14 @@
         -moz-user-select: none;
         -webkit-user-select: none;
         -ms-user-select: none;
+        /* display:none; */
       }
       .alert {
         color: #df0101;
       }
       @media (min-aspect-ratio: 1/1) {
         body {
-          font-size: 50vh;
+          font-size: 30vh;
         }
       }
       @media (max-aspect-ratio: 1/1) {
@@ -46,13 +47,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
   </head>
   <body>
-    <!-- <div id=msg>
+    <div id="message">
       <span id="info"></span>
       <p>
-        
       </p>
-    </div> -->
-   
+    </div>
     <div id="clock">
       <span id="minutes"></span>:<span id="seconds"></span>
     </div>
@@ -63,17 +62,28 @@
     // - customize total and alert time (separate page)
     // - ffw/rwd
 
-    const info = document.getElementById('info');
     // DOM elements
     const clock = document.getElementById('clock');
     const minutes = document.getElementById('minutes');
     const seconds = document.getElementById('seconds');
+    const info = document.getElementById('message');
 
     // Options
     const params = new URLSearchParams(location.search.slice(1));
     const totalTime = parseInt(params.get('time'), 10) || 20 * 60; // 20 minutes
     const alertTime = parseInt(params.get('alert'), 10) || 3 * 60; // 3 minutes
     let direction = params.get('direction') === 'up' ? 'up' : 'down';
+    let message = params.get('message')
+
+    if (message === null){
+      info.style.display = "none";
+    }else{
+      clock.style.display = "none";
+    }
+
+    // Message
+    console.log("Message : ", message)    
+    info.innerHTML = message
 
     // Helper stuff
     const toTime = (seconds) => ({
