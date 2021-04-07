@@ -17,13 +17,14 @@ def index():
 def start_countdown():
     
     start_time = request.form.get('starttime')
+
     logging.info(f"Received Start Time: {start_time}")
-    # print(f"Start time: {start_time}")
+
     base_url = 'https://jonathancychow.github.io/countdown/'
-    param = '?time=35&alert=30'
-    # clock = Clock('http://hurry-app.appspot.com/12:34/Final')
-    clock = Clock(base_url + param)
+    clock = Clock(base_url, start_time)
+
     logging.info(f"Start Counting Down")
+    
     clock.start_clock()
     return redirect(url_for('index'))
 
