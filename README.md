@@ -2,6 +2,7 @@
 
  - Clock 
  - https://jonathancychow.github.io/countdown/?time=35&alert=30
+ - https://jonathancychow.github.io/countdown/?message=helloworld
 
 ## Python Library Installation 
 - Run the command prompt with admin privilege and install the Python package Poetry as follow: 
