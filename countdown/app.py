@@ -25,7 +25,9 @@ def start_countdown():
 
     logging.info(f"Start Counting Down")
     
-    clock.start_clock()
+    # clock.start_clock()
+    clock.start_clock_chromium()
+    
     return redirect(url_for('index'))
 
 # @app.route('/items/new', methods=['POST'])
