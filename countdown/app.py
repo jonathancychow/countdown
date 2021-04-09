@@ -32,24 +32,11 @@ def start_countdown():
 
     return redirect(url_for('index'))
 
-# @app.route('/items/new', methods=['POST'])
-# def add_item():
-#     title = request.form['title']
-#     description = request.form['description']
-#     create_card(title, description)
-#     return redirect(url_for('index'))
-
-
-# @app.route('/items/complete', methods=['POST'])
-# def complete_item():
-#     done_item = request.form.get('title2')
-#     items = get_todo()
-
-#     for this_item in items:
-#         if this_item['name'] == done_item:
-#             update_card(this_item['id'])
-
-#     return redirect(url_for('index'))
+@app.route('/send_message', methods=['POST'])
+def send_message():
+    message = request.form['message']
+    logging.info("Received message : %s", message)
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
