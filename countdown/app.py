@@ -23,7 +23,7 @@ def start_countdown():
 
     base_url = get_clock_path()
 
-    clock = Clock(base_url, start_time)
+    clock = Clock(base_url, start_time, '')
 
     logging.info(f"Start Counting Down")
     
@@ -35,7 +35,15 @@ def start_countdown():
 @app.route('/send_message', methods=['POST'])
 def send_message():
     message = request.form['message']
+    
     logging.info("Received message : %s", message)
+    
+    base_url = get_clock_path()
+
+    clock = Clock(base_url, '', message)
+
+    clock.start_clock_chromium()
+    
     return redirect(url_for('index'))
 
 
