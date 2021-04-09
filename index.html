@@ -53,7 +53,7 @@
       </p>
     </div>
     <div id="clock">
-      <span id="minutes"></span>:<span id="seconds"></span>
+      <span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span>
     </div>
   </body>
   <script src="https://npmcdn.com/@reactivex/rxjs@5.0.0-beta.2/dist/global/Rx.umd.js"></script>
@@ -64,6 +64,7 @@
 
     // DOM elements
     const clock = document.getElementById('clock');
+    const hours = document.getElementById('hours');
     const minutes = document.getElementById('minutes');
     const seconds = document.getElementById('seconds');
     const info = document.getElementById('message');
@@ -88,7 +89,9 @@
     // Helper stuff
     const toTime = (seconds) => ({
       seconds: Math.floor(seconds % 60),
-      minutes: Math.floor(seconds / 60),
+      // If minutes is larger than 59, takes away number of hours * 60
+      minutes: Math.floor(seconds / 60) > 59 ? Math.floor(seconds / 60) - 60 * Math.floor(seconds/60/60) : Math.floor(seconds / 60),
+      hours: Math.floor(seconds/60/60),
       alert: direction === 'up' ? seconds > totalTime - alertTime : seconds < alertTime
     });
     const pad = (number) => number <= 9 ? ('0' + number) : number.toString();
@@ -104,6 +107,7 @@
       clock.classList[time.alert ? 'add' : 'remove']('alert');
       minutes.innerHTML = pad(time.minutes);
       seconds.innerHTML = pad(time.seconds);
+      hours.innerHTML   = pad(time.hours);
     }
 
     const interval$ = Rx.Observable.interval(1000);
