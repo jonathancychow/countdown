@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from countdown.flask_config import Config
 import logging
-from countdown.clock import ClockDriver
+from countdown.clock import ClockDriver, ClockMessage
 from countdown.utils import get_clock_path
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -21,35 +21,26 @@ def index():
 def start_countdown():
     
     start_time = request.form.get('starttime')
-
     logging.info(f"Received Start Time: {start_time}")
 
-    base_url = get_clock_path()
-
-    # clock = Clock(base_url, start_time, '')
+    message_url = ClockMessage(start_time, '').set_url()
 
     logging.info(f"Start Counting Down")
-    
-    # clock.start_clock()
-    # clock.start_clock_chromium()
-    driver.get('http://www.google.com')
+    driver.get(message_url)
     driver.fullscreen_window()
-
 
     return redirect(url_for('index'))
 
 @app.route('/send_message', methods=['POST'])
 def send_message():
+
     message = request.form['message']
-    
     logging.info("Received message : %s", message)
     
-    base_url = get_clock_path()
+    message_url = ClockMessage('', message).set_url()
 
-    # clock = Clock(base_url, '', message)
-
-    # clock.start_clock_chromium()
-    driver.get('file:///home/jonathan/Documents/Repo/countdown/index.html?message=hello')
+    logging.info(f"Message sent to screen")
+    driver.get(message_url)
     driver.fullscreen_window()
 
     return redirect(url_for('index'))

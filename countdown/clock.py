@@ -3,6 +3,8 @@ from selenium.webdriver.chrome.options import Options
 from dateutil import parser
 from datetime import datetime
 import logging
+from countdown.utils import get_clock_path
+
 
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.DEBUG)
 
@@ -19,22 +21,23 @@ class ClockDriver():
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option("detach", True)
         driver = webdriver.Chrome(ChromeDriverManager().install(),chrome_options=options)
-        # driver.get('http://hurry-app.appspot.com/12:34/Final')
-        # driver.get(self.set_url())
         driver.fullscreen_window()
     
     def start_clock_chromium():
         options = Options()
-        chromium_path = '/usr/bin/chromium-browser'
-        options.binary_location = chromium_path
+        options.binary_location = '/usr/bin/chromium-browser'
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         # options.add_experimental_option("detach", True)
         driver = webdriver.Chrome(chrome_options=options)
-        # driver.get(self.set_url())
         driver.fullscreen_window()
         return driver
 
 class ClockMessage():
+    def __init__(self, target_time:str, message:str):
+        self.clock_url = get_clock_path()
+        self.target_time = target_time
+        self.message = message
+
     def calculate_time(self):
         print(self.target_time)
         target_datetime = parser.parse(self.target_time)
