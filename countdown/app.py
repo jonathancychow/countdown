@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from countdown.flask_config import Config
 import logging
-# from countdown.clock import Clock
+from countdown.clock import ClockDriver
 from countdown.utils import get_clock_path
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -11,17 +11,10 @@ logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.DEBUG)
 app = Flask(__name__)
 app.config.from_object(Config)
 
-options = Options()
-chromium_path = '/usr/bin/chromium-browser'
-options.binary_location = chromium_path
-options.add_experimental_option("excludeSwitches", ["enable-automation"])
-# options.add_experimental_option("detach", True)
-driver = webdriver.Chrome(chrome_options=options)
-
+driver = ClockDriver.start_clock_chromium()
 
 @app.route('/')
 def index():
-
     return render_template('index.html')
 
 @app.route('/start_countdown', methods=['POST'])

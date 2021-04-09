@@ -6,33 +6,35 @@ import logging
 
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.DEBUG)
 
-class Clock():
-    def __init__(self, url:str, target_time:str, message:str):
-        self.chrome_location = '/usr/bin/google-chrome'
-        self.clock_url = url
-        self.target_time = target_time
-        self.message = message
+class ClockDriver():
+    # def __init__(self, url:str, target_time:str, message:str):
+    #     self.chrome_location = '/usr/bin/google-chrome'
+    #     self.clock_url = url
+    #     self.target_time = target_time
+    #     self.message = message
 
-    def start_clock_chrome(self):
+    def start_clock_chrome():
         from webdriver_manager.chrome import ChromeDriverManager
         options = webdriver.ChromeOptions()
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option("detach", True)
         driver = webdriver.Chrome(ChromeDriverManager().install(),chrome_options=options)
         # driver.get('http://hurry-app.appspot.com/12:34/Final')
-        driver.get(self.set_url())
+        # driver.get(self.set_url())
         driver.fullscreen_window()
     
-    def start_clock_chromium(self):
+    def start_clock_chromium():
         options = Options()
         chromium_path = '/usr/bin/chromium-browser'
         options.binary_location = chromium_path
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
-        options.add_experimental_option("detach", True)
+        # options.add_experimental_option("detach", True)
         driver = webdriver.Chrome(chrome_options=options)
-        driver.get(self.set_url())
+        # driver.get(self.set_url())
         driver.fullscreen_window()
+        return driver
 
+class ClockMessage():
     def calculate_time(self):
         print(self.target_time)
         target_datetime = parser.parse(self.target_time)
