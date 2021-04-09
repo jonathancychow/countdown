@@ -4,6 +4,9 @@
  - https://jonathancychow.github.io/countdown/?time=35&alert=30
  - https://jonathancychow.github.io/countdown/?message=helloworld
 
+# Prereq
+- Install chromedriver for raspberry pi, see this [link](https://ivanderevianko.com/2020/01/selenium-chromedriver-for-raspberrypi).
+
 ## Python Library Installation 
 - Run the command prompt with admin privilege and install the Python package Poetry as follow: 
 ```bash
@@ -40,5 +43,5 @@ in case a different framework is needed.
 poetry run pytest
 ``` 
 
-## Credit 
-Countdown clock credit to this [project] (https://github.com/szimek/final-countdown)
+# Credit 
+Countdown clock credit to this [project](https://github.com/szimek/final-countdown).
