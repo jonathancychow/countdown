@@ -3,8 +3,8 @@
 
 {% block content %}
 <div class="jumbotron">
-    <h1 class="display-4">Countdown</h1>
-    <p class="lead">Start counting down for stage</p>
+  <h1 class="display-4">Countdown</h1>
+  <p class="lead">Start counting down for stage</p>
 </div>
 
 
@@ -28,28 +28,49 @@
         </ul>
     </div>
 </div> -->
+<div class="row">
+  <div class="col-md-12">
+    <h2>Count Down</h2>
+    <form action="{{'/start_countdown'}}" method="post">
+      <input type="datetime-local" id="starttimeid" name="starttime" value="2017-06-01T08:30" required>
+      <input type="submit" value='Start Count Down'>
+      <script>
+        n = new Date();
+        m = n.getMonth() + 1;
+        d = n.getDate();
+        y = n.getFullYear()
+        if (m <= 9)
+          m = "0" + String(m)
+        else
+          m = String(m)
+        if (d <= 9)
+          d = "0" + String(d)
+        else
+          d = String(d)
 
-<form action="{{'/start_countdown'}}" method="post">
-    <input type="datetime-local"  id="starttimeid"  name="starttime" value="2017-06-01T08:30" required>
-
-    <input type="submit">
-    <script>  
-      n =  new Date();
-      m = n.getMonth() + 1;
-      d = n.getDate();
-      y = n.getFullYear()
-      if (m <= 9)
-        m="0"+String(m)
-      else
-        m=String(m)
-      if (d <= 9)
-        d="0"+String(d)
-      else
-        d=String(d)
-    
-      timeNow = String(y+ '-'+ m + '-' + d + 'T10:30')    
-      document.getElementById("starttimeid").value = timeNow    
+        timeNow = String(y + '-' + m + '-' + d + 'T10:30')
+        document.getElementById("starttimeid").value = timeNow
       </script>
-</form>
+    </form>
+  </div>
+</div>
+
+<div class="row" style="margin-top:50px;">
+  <div class="col-md-12">
+    <h2>Message</h2>
+    <form action="{{'/start_message'}}" method="post">
+      <div class="form-example">
+        <!-- <label for="title">TO DO: </label> -->
+        <input type="title" name="title" id="title" required>
+        <!-- <label for="Done"> Is it done?</label> -->
+        <input type="submit" value="Message To Stage">
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- <div class="form-example">
+    <input type="submit" value="Message To Stage">
+  </div> -->
 
 {% endblock %}
