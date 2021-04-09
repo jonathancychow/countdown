@@ -1,5 +1,4 @@
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from dateutil import parser
 from datetime import datetime
@@ -14,6 +13,7 @@ class Clock():
         self.target_time = target_time
 
     def start_clock_chrome(self):
+        from webdriver_manager.chrome import ChromeDriverManager
         options = webdriver.ChromeOptions()
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option("detach", True)
@@ -46,7 +46,8 @@ class Clock():
         return url
 
 if __name__ == '__main__':
-    base_url = 'https://jonathancychow.github.io/countdown/'
+    # base_url = 'https://jonathancychow.github.io/countdown/'
+    base_url = 'file:///home/jonathan/Documents/Repo/countdown/index.html'
     # param = '?time=35&alert=30'
     target = '2021-04-07T13:30'
     # clock = Clock('http://hurry-app.appspot.com/12:34/Final')

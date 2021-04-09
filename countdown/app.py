@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from countdown.flask_config import Config
 import logging
 from countdown.clock import Clock
+from countdown.utils import get_clock_path
 
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.DEBUG)
 
@@ -20,14 +21,15 @@ def start_countdown():
 
     logging.info(f"Received Start Time: {start_time}")
 
-    base_url = 'https://jonathancychow.github.io/countdown/'
+    base_url = get_clock_path()
+
     clock = Clock(base_url, start_time)
 
     logging.info(f"Start Counting Down")
     
     # clock.start_clock()
     clock.start_clock_chromium()
-    
+
     return redirect(url_for('index'))
 
 # @app.route('/items/new', methods=['POST'])
