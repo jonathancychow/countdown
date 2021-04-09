@@ -43,7 +43,7 @@ class ClockMessage():
         target_datetime = parser.parse(self.target_time)
         now_datetime = datetime.now()
         time_delta = target_datetime - now_datetime
-        return time_delta.seconds
+        return int(time_delta.total_seconds())
     
     def set_url(self):
         if self.target_time != '':
@@ -57,25 +57,10 @@ class ClockMessage():
         
 if __name__ == '__main__':
     # base_url = 'https://jonathancychow.github.io/countdown/'
-    base_url = 'file:///home/jonathan/Documents/Repo/countdown/index.html'
     # param = '?time=35&alert=30'
-    target = '2021-04-07T13:30'
-    # clock = Clock('http://hurry-app.appspot.com/12:34/Final')
-    clock = Clock(base_url, '','hello')
-    # sec = clock.set_url()
-    # print(sec)
-    clock.start_clock_chromium()
-    # from selenium.webdriver.chrome.options import Options
-    # options = Options()
-    # # chromium_path = '/snap/bin/chromium'
-    # chromium_path = '/usr/bin/chromium-browser'
-    # options.binary_location = chromium_path
-    # options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    # options.add_experimental_option("detach", True)
-    # driver = webdriver.Chrome(chrome_options=options)
-    # driver.get(base_url)
-    # driver.fullscreen_window()
-
+    target = '2021-04-11T16:39'
+    url = ClockMessage(target,'').set_url()
+    print(url)
 
 
 
