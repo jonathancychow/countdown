@@ -18,10 +18,16 @@ pip install poetry
 ```bash
 poetry install 
 ```  
-
-## Test
-
-
+## Environment
+Environment variables for Flask
+```bash
+cp .env.copy .env
+```
+Start up script
+```bash
+chmod +x start_clock.sh
+```
+# Test
 ### Static code analysis - lint
 
 This step verifies the code style of the project and makes sure that common inconsistencies are avoided. You can
@@ -46,7 +52,6 @@ poetry run pytest
 # Get Going
 Start the flask server with the following command:
 ```bash
-chmod +x start_clock.sh
 ./start_clock.sh
 ``` 
 
