@@ -1,11 +1,12 @@
-# Countdown with API
-
- - Clock 
- - https://jonathancychow.github.io/countdown/?time=35&alert=30
- - https://jonathancychow.github.io/countdown/?message=helloworld
+# Countdown Application with API Backend
+There are two parts to this project:
+ 1. Display
+    - [Countdown Clock](https://jonathancychow.github.io/countdown/?time=35&alert=30)
+    - [Message](https://jonathancychow.github.io/countdown/?message=helloworld)
+2. Flask server that control the content for the html above.
 
 # Prereq
-- Install chromedriver for raspberry pi, see this [link](https://ivanderevianko.com/2020/01/selenium-chromedriver-for-raspberrypi).
+- If you are runing the flast server on a raspberry pi, please see instruction below for chromedriver installation, see this [link](https://ivanderevianko.com/2020/01/selenium-chromedriver-for-raspberrypi).
 
 ## Python Library Installation 
 - Run the command prompt with admin privilege and install the Python package Poetry as follow: 
@@ -41,6 +42,12 @@ in case a different framework is needed.
 
 ```bash
 poetry run pytest
+``` 
+# Get Going
+Start the flask server with the following command:
+```bash
+chmod +x start_clock.sh
+./start_clock.sh
 ``` 
 
 # Credit 
