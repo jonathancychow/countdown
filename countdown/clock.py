@@ -9,25 +9,23 @@ from countdown.utils import get_clock_path
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.DEBUG)
 
 class ClockDriver():
-    # def __init__(self, url:str, target_time:str, message:str):
-    #     self.chrome_location = '/usr/bin/google-chrome'
-    #     self.clock_url = url
-    #     self.target_time = target_time
-    #     self.message = message
+
+    # FIXME: duplicate code for chrome and chromium
 
     def start_clock_chrome():
         from webdriver_manager.chrome import ChromeDriverManager
         options = webdriver.ChromeOptions()
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
-        options.add_experimental_option("detach", True)
         driver = webdriver.Chrome(ChromeDriverManager().install(),chrome_options=options)
         driver.fullscreen_window()
     
     def start_clock_chromium():
         options = Options()
+
+        # FIXME: hardcode binary location
         options.binary_location = '/usr/bin/chromium-browser'
+
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
-        # options.add_experimental_option("detach", True)
         driver = webdriver.Chrome(chrome_options=options)
         driver.fullscreen_window()
         return driver
@@ -39,7 +37,8 @@ class ClockMessage():
         self.message = message
 
     def calculate_time(self):
-        print(self.target_time)
+        logging.info("Target time: %s", self.target_time)
+
         target_datetime = parser.parse(self.target_time)
         now_datetime = datetime.now()
         time_delta = target_datetime - now_datetime
