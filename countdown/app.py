@@ -11,7 +11,14 @@ logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.DEBUG)
 app = Flask(__name__)
 app.config.from_object(Config)
 
-driver = ClockDriver.start_clock_chromium()
+def start_up():
+    driver = ClockDriver.start_clock_chromium()
+    message_url = ClockMessage('', ' ').set_url()
+    driver.get(message_url)
+    driver.fullscreen_window()
+    return driver
+
+driver = start_up()
 
 @app.route('/')
 def index():
