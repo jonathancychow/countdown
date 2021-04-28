@@ -4,7 +4,7 @@ from dateutil import parser
 from datetime import datetime
 import logging
 from countdown.utils import get_clock_path
-
+from shutil import which
 
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.DEBUG)
 
@@ -21,9 +21,9 @@ class ClockDriver():
     
     def start_clock_chromium():
         options = Options()
-
-        # FIXME: hardcode binary location
-        options.binary_location = '/usr/bin/chromium-browser'
+        options.binary_location = which('chromium-browser')
+        if options.binary_location == None:
+            logging.warning("Chromium-browser not found, add browser binary to path")
 
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         driver = webdriver.Chrome(chrome_options=options)
@@ -45,6 +45,7 @@ class ClockMessage():
         return int(time_delta.total_seconds())
     
     def set_url(self):
+        url = ''
         if self.target_time != '':
             second = self.calculate_time()
             url = self.clock_url + '?time='+ str(second) + '&alert=30'
