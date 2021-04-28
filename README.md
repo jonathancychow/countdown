@@ -1,4 +1,11 @@
-# Countdown Application with API Backend
+# Countdown Application with Web UI Control
+
+You could see the demo video here: 
+
+
+[![](image/youtube.png)](https://youtu.be/ZUQpnmImtWw)
+
+
 There are two parts to this project:
  1. Display
     - [Countdown Clock](https://jonathancychow.github.io/countdown/?time=35&alert=30)
