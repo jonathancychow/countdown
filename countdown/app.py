@@ -13,7 +13,8 @@ app.config.from_object(Config)
 
 def start_up():
     driver = ClockDriver.start_clock_chromium()
-    message_url = ClockMessage('', ' ','').set_url()
+    message_url = ClockMessage('', ' ','',1).set_url()
+    logging.info(f"Starting up with url: {message_url}")
     driver.get(message_url)
     driver.fullscreen_window()
     return driver
@@ -30,7 +31,7 @@ def start_specific_time():
     start_time = request.form.get('starttime')
     logging.info(f"Received Start Time: {start_time}")
 
-    message_url = ClockMessage(start_time,'', '').set_url()
+    message_url = ClockMessage(start_time,'', '',0).set_url()
 
     logging.info(f"Start Counting Down")
     driver.get(message_url)
@@ -44,7 +45,7 @@ def start_fixed_time():
     start_time = request.form.get('fixtime')
     logging.info(f"Received Start Time: {start_time}")
 
-    message_url = ClockMessage('', '',start_time).set_url()
+    message_url = ClockMessage('', '',start_time,0).set_url()
 
     logging.info(f"Start Counting Down")
     driver.get(message_url)
@@ -58,7 +59,7 @@ def send_message():
     message = request.form['message']
     logging.info("Received message : %s", message)
     
-    message_url = ClockMessage('', message,'').set_url()
+    message_url = ClockMessage('', message,'',0).set_url()
 
     logging.info(f"Message sent to screen")
     driver.get(message_url)
