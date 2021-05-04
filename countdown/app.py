@@ -67,6 +67,18 @@ def send_message():
 
     return redirect(url_for('index'))
 
+@app.route('/show_current', methods=['POST'])
+def show_current():
+
+    logging.info("Received request to display current time")
+    
+    message_url = ClockMessage('', ' ','',1).set_url()
+
+    logging.info(f"Message sent to screen")
+    driver.get(message_url)
+    driver.fullscreen_window()
+
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run()
