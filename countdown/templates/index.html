@@ -31,7 +31,7 @@
 <div class="row">
   <div class="col-md-12">
     <h2>Count Down</h2>
-    <form action="{{'/start_countdown'}}" method="post">
+    <form action="{{'/start_specific_time'}}" method="post">
       <input type="datetime-local" id="starttimeid" name="starttime" value="2017-06-01T08:30" required>
       <input type="submit" value='Start Count Down'>
       <script>
@@ -51,6 +51,15 @@
         timeNow = String(y + '-' + m + '-' + d + 'T10:30')
         document.getElementById("starttimeid").value = timeNow
       </script>
+    </form>
+    <form action="{{'/start_fixed_time'}}" method="post">
+      <select name="fixtime" id="fixtime">
+          <option value="60" selected="60">1 min</option>
+          <option value="120">2 mins</option>
+          <option value="300">5 mins</option>
+          <option value="600">10 mins</option>
+      </select>
+    <input type="submit" value='Start Count Down'>
     </form>
   </div>
 </div>

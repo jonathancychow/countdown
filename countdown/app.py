@@ -13,7 +13,7 @@ app.config.from_object(Config)
 
 def start_up():
     driver = ClockDriver.start_clock_chromium()
-    message_url = ClockMessage('', ' ').set_url()
+    message_url = ClockMessage('', ' ','').set_url()
     driver.get(message_url)
     driver.fullscreen_window()
     return driver
@@ -24,13 +24,27 @@ driver = start_up()
 def index():
     return render_template('index.html')
 
-@app.route('/start_countdown', methods=['POST'])
-def start_countdown():
+@app.route('/start_specific_time', methods=['POST'])
+def start_specific_time():
     
     start_time = request.form.get('starttime')
     logging.info(f"Received Start Time: {start_time}")
 
-    message_url = ClockMessage(start_time, '').set_url()
+    message_url = ClockMessage(start_time,'', '').set_url()
+
+    logging.info(f"Start Counting Down")
+    driver.get(message_url)
+    driver.fullscreen_window()
+
+    return redirect(url_for('index'))
+
+@app.route('/start_fixed_time', methods=['POST'])
+def start_fixed_time():
+    
+    start_time = request.form.get('fixtime')
+    logging.info(f"Received Start Time: {start_time}")
+
+    message_url = ClockMessage('', '',start_time).set_url()
 
     logging.info(f"Start Counting Down")
     driver.get(message_url)
@@ -44,7 +58,7 @@ def send_message():
     message = request.form['message']
     logging.info("Received message : %s", message)
     
-    message_url = ClockMessage('', message).set_url()
+    message_url = ClockMessage('', message,'').set_url()
 
     logging.info(f"Message sent to screen")
     driver.get(message_url)
