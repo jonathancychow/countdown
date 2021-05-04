@@ -6,34 +6,18 @@
   <h1 class="display-4">Countdown</h1>
   <p class="lead">Start counting down for stage</p>
 </div>
-
-
-<!-- <div class="row">
-    <div class="col-md-12">
-        <h2>Next Bus 1</h2>
-        <ul class="list-group mb-4">
-            {% for item in itemsOne %}
-            <li>{{item}}</li>
-            {% endfor %}
-        </ul>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <h2>Next Bus 2</h2>
-        <ul class="list-group mb-4">
-            {% for item in itemsTwo %}
-            <li>{{ item}}</li>
-            {% endfor %}
-        </ul>
-    </div>
-</div> -->
 <div class="row">
   <div class="col-md-12">
     <h2>Count Down</h2>
     <form action="{{'/start_specific_time'}}" method="post">
-      <input type="datetime-local" id="starttimeid" name="starttime" value="2017-06-01T08:30" required>
-      <input type="submit" value='Start Count Down'>
+      <div class="row">
+        <div class="col">
+          <input type="datetime-local" id="starttimeid" name="starttime" value="2017-06-01T08:30" required>
+        </div>
+        <div class="col">
+          <input type="submit" value='Start Count Down'>
+        </div>
+      </div>
       <script>
         n = new Date();
         m = n.getMonth() + 1;
@@ -53,13 +37,19 @@
       </script>
     </form>
     <form action="{{'/start_fixed_time'}}" method="post">
-      <select name="fixtime" id="fixtime">
-          <option value="60" selected="60">1 min</option>
-          <option value="120">2 mins</option>
-          <option value="300">5 mins</option>
-          <option value="600">10 mins</option>
-      </select>
-    <input type="submit" value='Start Count Down'>
+      <div class="row">
+        <div class="col">
+          <select name="fixtime" id="fixtime">
+            <option value="60" selected="60">1 min</option>
+            <option value="120">2 mins</option>
+            <option value="300">5 mins</option>
+            <option value="600">10 mins</option>
+        </select>
+        </div>
+        <div class="col">
+          <input type="submit" value='Start Count Down'>
+        </div>
+      </div>
     </form>
   </div>
 </div>
@@ -69,10 +59,14 @@
     <h2>Message</h2>
     <form action="{{'/send_message'}}" method="post">
       <div class="form-example">
-        <!-- <label for="title">TO DO: </label> -->
-        <input type="title" name="message" id="message" required>
-        <!-- <label for="Done"> Is it done?</label> -->
-        <input type="submit" value="Message To Stage">
+        <div class="row">
+          <div class="col">
+            <input type="title" name="message" id="message" required>
+          </div>
+          <div class="col">
+            <input type="submit" value="Message To Stage">
+          </div>
+        </div>
       </div>
     </form>
   </div>
