@@ -56,6 +56,26 @@
       <span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span>
     </div>
   </body>
+  <body onload="currentTime()">
+    <div id="currenttime"></div>
+    </body>
+  <script>
+    function currentTime() {
+      var today = new Date();
+      var h = today.getHours();
+      var m = today.getMinutes();
+      var s = today.getSeconds();
+      m = checkTime(m);
+      s = checkTime(s);
+      document.getElementById('currenttime').innerHTML =
+      h + ":" + m + ":" + s;
+      var t = setTimeout(currentTime, 1000);
+    }
+    function checkTime(i) {
+      if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+      return i;
+    }
+  </script>
   <script src="https://npmcdn.com/@reactivex/rxjs@5.0.0-beta.2/dist/global/Rx.umd.js"></script>
   <script>
     // TODO
@@ -75,11 +95,20 @@
     const alertTime = parseInt(params.get('alert'), 10) || 3 * 60; // 3 minutes
     let direction = params.get('direction') === 'up' ? 'up' : 'down';
     let message = params.get('message')
+    let bshowcurrent = params.get('showcurrent');
 
     if (message === null){
       info.style.display = "none";
     }else{
       clock.style.display = "none";
+    }
+
+    // Check show current time bool 
+    if (bshowcurrent==1){
+      info.style.display = "none";
+      clock.style.display = "none";
+    }else{
+      currenttime.style.display = "none";
     }
 
     // Message

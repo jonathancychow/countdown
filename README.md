@@ -10,6 +10,7 @@ There are two parts to this project:
  1. Display
     - [Countdown Clock](https://jonathancychow.github.io/countdown/?time=35&alert=30)
     - [Message](https://jonathancychow.github.io/countdown/?message=helloworld)
+    - [Current Time](https://jonathancychow.github.io/countdown/?showcurrent=1)
 2. Flask server that control the content for the html above.
 
 # Prereq
