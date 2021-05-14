@@ -31,7 +31,10 @@ class ClockDriver():
         return driver
 
 class ClockMessage():
-    def __init__(self, target_time:str, message:str, fixed_time:str, show_current:int):
+    def __init__(
+        self, target_time:str = None, message:str = None, 
+        fixed_time:str = None, show_current:int = 0):
+
         self.clock_url = get_clock_path()
         self.target_time = target_time
         self.message = message
@@ -48,12 +51,12 @@ class ClockMessage():
     
     def set_url(self):
         url = ''
-        if self.target_time != '':
+        if self.target_time != None:
             second = self.calculate_time()
             url = self.clock_url + '?time='+ str(second) + '&alert=30'
-        if self.message != '':
+        if self.message != None:
             url = self.clock_url + '?message='+ self.message
-        if self.fixed_time !='':
+        if self.fixed_time != None:
             second = self.fixed_time
             url = self.clock_url + '?time='+ str(second) + '&alert=30'
         if self.show_current == 1:
